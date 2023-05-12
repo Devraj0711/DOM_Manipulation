@@ -10,3 +10,17 @@ headerTitle.style.borderBottom= 'solid 9px #000';
 var Titles=document.querySelectorAll('.title');
 Titles[0].style.fontWeight='bold';
 Titles[0].style.color= "green";
+
+
+//manipulation on list items to make all the elements in bold
+var items= document.getElementsByClassName('list-group');
+items[0].style.fontWeight='bold';
+
+var ListItem= document.getElementsByClassName('list-group-item');
+ListItem[2].style.color="green";
+
+//If we are trying to access new item with the same class name- it throws an error
+//var NewItem= document.getElementsByClassName('list-group')
+//NewItem[4].style.color="red"; 
+ var TagItem=document.getElementsByTagName('li');
+ TagItem[4].style.color="green";
