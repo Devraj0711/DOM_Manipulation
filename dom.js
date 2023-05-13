@@ -19,6 +19,9 @@ items[0].style.fontWeight='bold';
 var ListItem= document.getElementsByClassName('list-group-item');
 ListItem[2].style.color="green";
 
+ListItem[1].style.background="green";
+ListItem[2].style.visibility="hidden";
+
 //If we are trying to access new item with the same class name- it throws an error
 //var NewItem= document.getElementsByClassName('list-group')
 //NewItem[4].style.color="red"; 
