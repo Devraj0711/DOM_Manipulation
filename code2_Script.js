@@ -1,8 +1,12 @@
 var form_Id=document.getElementById('addForm');
 var item_Id=document.getElementById('items');
-
+var filter= document.getElementById('filter');
+filter.addEventListener('keyup', filterItems);
 form_Id.addEventListener('submit', addItem);
 item_Id.addEventListener('click', removeItem);
+
+
+//to add new item and edit button in the list
 function addItem(e)
 {
     e.preventDefault();
@@ -10,6 +14,7 @@ function addItem(e)
 var newItem= document.getElementById('item').value;
 
 var li=document.createElement('li');
+
 li.className='list item';
 li.appendChild(document.createTextNode(newItem));
 
@@ -33,6 +38,7 @@ li.appendChild(EditBtn);
 item_Id.appendChild(li);
 }
 
+//to delete and item in the list.
 function removeItem(e)
 {
     e.preventDefault();
@@ -44,4 +50,29 @@ function removeItem(e)
             item_Id.removeChild(li);
         }
     }
+}
+
+//filter item
+
+function filterItems(e)
+{
+    e.preventDefault();
+    var text= e.target.value.toLowerCase();
+    
+    //Get Lis
+    var items= item_Id.getElementsByTagName('li');
+
+    //to convert to Array
+    Array.from(items).forEach(function(item)
+    {
+        var itemName= item.firstChild.textContent;
+        if(itemName.toLowerCase().indexOf(text)!=-1)
+        {
+            item.style.display='block';
+        }
+        else
+        {
+            item.style.display='none';
+        }
+    })
 }
