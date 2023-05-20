@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JS For Beginners</title>
+    <link rel="stylesheet" href="localStorage_1.css">
+  </head>
+  <body>
+    <header>
+      <h1>JS For Beginners</h1>
+    </header>
+
+    <section class="container">
+      <form id="my-form">
+        <h1>Add User</h1>
+        <div class="msg"></div>
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name">
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="text" id="email">
+        </div>
+        <input class="btn" type="submit" value="Submit">
+      </form>
+
+      <ul id="users"></ul>
+
+      <ul class="items">
+        <li class="item" style="text-align:center; color:yellow;">Hello</li>
+        <li class="item" style="text-align:center; color:green;">Item 2</li>
+        <li class="item" style="text-align:center;">Item 3</li>
+      </ul> 
+    </section>
+    
+
+    <script>
+      const myForm=document.querySelector('#my-form');
+      const nameInput= document.querySelector('#name');
+      const emailInput= document.querySelector('#email');
+      const msg=document.querySelector('.msg');
+      const items= document.querySelectorAll('.item');
+      //Events
+      const btn= document.querySelector('.btn');
+      /**btn.addEventListener('click',(e)=>
+      {
+        e.preventDefault();
+        console.log('click');
+        document.querySelector('my-form').style.background='#ccc';
+      }); **/
+      myForm.addEventListener('submit', onSubmit);
+      
+      function onSubmit(e)
+      {
+        e.preventDefault();
+      if(nameInput.value==='' || emailInput==='')
+      {
+        msg.classList.add('error');
+        msg.innerHTML='Enter all fields';
+        setTimeout(()=> msg.remove(), 3000);
+      }
+      else{
+        
+        console.log(nameInput.value);
+        console.log(emailInput.value);
+        console.log('Success');
+      }
+
+      //localStorage
+      const Name= document.querySelector('#name');
+      const Email=document.querySelector('#email');
+      localStorage.setItem('Name',Name.value);
+      localStorage.setItem('Email',Email.value);
+      console.log(localStorage.getItem('name'));
+      console.log(localStorage.getItem('Email'));
+      //localStorage.removeItem('name');
+    }
+
+      items.forEach((item)=> console.log(item));
+      
+      //localStorage.removeItem('name');
+      
+      //Session Storage
+      sessionStorage.setItem('name','Dev');
+      sessionStorage.setItem('name','Bob');
+ 
+      //Cookies
+      document.cookie= 'name=Devraj; expires=' + new Date(2023, 3, 18).toUTCString()
+      console.log(document.cookie)
+    </script>
+  </body>
+</html>
