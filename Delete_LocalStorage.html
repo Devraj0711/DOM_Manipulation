@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <title>Basic HTML localStorage Code</title>
+  </head>
+  <body>
+    <form id="my-form">
+        <div class="msg"></div>
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" required>
+
+          <label for="email">Email:</label>
+          <input type="text" id="email" required>
+        
+           <label for="phone">Phone Number:</label>
+            <input type="number" id="phone" required>
+            
+            <input class="btn" type="submit" value="Submit">
+        </div>
+        <ul id="listOfItems"></ul>
+        </form>
+    </body>
+    <script>
+    const myForm=document.querySelector('#my-form');
+    const item_Id=document.getElementById("listOfItems"); 
+    
+    myForm.addEventListener('submit', onSubmit);
+    item_Id.addEventListener('click', removeItem);
+    
+    const myName=document.getElementById('name');
+    const myEmail=document.getElementById('email');
+    const myPhone=document.getElementById('phone');  
+     
+    function onSubmit(e)
+      {
+        e.preventDefault();
+        console.log(myName.value);
+        console.log(myEmail.value);
+        console.log(myPhone.value);
+        let myobj={myName: myName.value, myEmail:myEmail.value, myPhone:myPhone.value};
+        let MyObj=JSON.stringify(myobj);
+        localStorage.setItem(myEmail.value, MyObj);
+        showOnScreen(myobj);
+      }
+      function showOnScreen(myobj)
+      {
+        //e.preventDefault();
+        console.log(myobj.myName);
+        const parentElement=document.getElementById("listOfItems");
+        const childElement=document.createElement('li');
+        //create a delete button
+        var DeleteBtn= document.createElement('button');
+        DeleteBtn.className='btn btn-danger btn-sm float-right delete';
+        DeleteBtn.appendChild(document.createTextNode(' X '));
+
+        childElement.textContent=myobj.myName+' - '+myobj.myEmail+' - '+myobj.myPhone;
+        childElement.appendChild(DeleteBtn);
+        parentElement.appendChild(childElement);
+        
+      }
+
+      function removeItem(e)
+     {
+    e.preventDefault();
+      if(e.target.classList.contains('delete'))
+       {
+          if(confirm('Sure man?'))
+          {
+            var li=e.target.parentElement;
+            item_Id.removeChild(li);
+            
+            localStorage.removeItem(myEmail.value);
+          }
+        }
+       }
+
+    </script>
+</html>
+
